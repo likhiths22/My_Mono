@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Chinna</title>
+<title>Projects — Mr LR</title>
 <script src="theme.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
 
   <div class="nav">
-    <a class="brand" href="index.html">Likhith <span>/ Chinna</span></a>
+    <a class="brand" href="index.html">Likhith <span>/ Mr LR</span></a>
     <div class="links">
       <a href="index.html">home</a>
       <a href="projects.html" class="active">projects</a>
@@ -22,8 +25,10 @@
   </div>
 
   <h1 class="hero">Projects</h1>
-  <p class="lede">Two, in order of how much of my time they currently take.</p>
+  <p class="lede">What I'm building, roughly in order of how much of my time it takes.
+    Everything else lives on <a href="https://github.com/MrLR22" target="_blank" rel="noopener">GitHub</a>.</p>
 
+  <h2 class="section">research</h2>
   <div class="cellblock">
     <div class="proj" id="mnemo">
       <div class="num">01</div>
@@ -33,19 +38,22 @@
           <span class="status">active</span>
         </div>
         <p class="desc">
-          A privacy-preserving, CPU-only episodic memory retrieval system for egocentric video —
-          ask it what happened and when, without a GPU or a cloud upload. This is my final-year
-          research project, and the core academic focus right now. The pipeline runs YOLOv8 and
-          MediaPipe for detection, Farneback optical flow for motion, CLIP for semantics, and a
-          small ~5K-parameter MLP to fuse it all, indexed through ChromaDB and SQLite, queried
-          via phi3-mini or Moondream2 over Ollama. Video ingestion (milestone 1) is done; next up
-          is live RTSP, Whisper voice queries, and a web/mobile UI. Targeting ACM Multimedia,
-          IEEE TENCON, or BMVC 2026 for publication.
+          A wearable memory assistant that remembers what you <em>did</em>, not what you saw. A
+          chest-worn camera feeds a small always-on model — MediaPipe Hands, YOLOv8n and sparse
+          optical flow into HOI-TCN, a 0.24M-parameter causal temporal CNN — that decides which
+          4-second windows are worth a closer look. Only those go to Qwen3-VL-4B, which writes short
+          structured lines into a text-only SQLite "reference diary". No frame is ever stored.
+          Questions like "did I close the fridge?" are answered only from the diary, with times and
+          places, and it declines when the record doesn't say. Over a whole 2.4-hour morning it gets
+          76% of questions right versus 66% for the VLM shown the entire morning, and invents no
+          events. This is my final-year research project; the paper (ENGRAM) is in preparation.
         </p>
-        <div class="stack">
-          <span>YOLOv8</span><span>MediaPipe</span><span>Optical Flow</span><span>CLIP</span>
-          <span>MLP fusion</span><span>ChromaDB</span><span>SQLite</span><span>Ollama</span>
+        <div class="stack" style="margin-bottom:10px;">
+          <span>MediaPipe</span><span>YOLOv8n</span><span>Optical Flow</span><span>HOI-TCN</span>
+          <span>Qwen3-VL-4B</span><span>SQLite</span><span>PyTorch</span>
         </div>
+        <a class="repo" href="https://github.com/MrLR22/MNemo" target="_blank" rel="noopener">code ↗</a>
+        <a class="repo" href="https://mrlr22.github.io/mnemo-site/" target="_blank" rel="noopener">project site ↗</a>
       </div>
     </div>
 
@@ -67,10 +75,63 @@
         </div>
       </div>
     </div>
-
   </div>
 
-  <footer class="site">© 2026 Chinna — built by hand, no framework.</footer>
+  <h2 class="section">small tools</h2>
+
+  <div class="latest-item" id="warpctl">
+    <a class="title" href="https://github.com/MrLR22/warpctl" target="_blank" rel="noopener">warpctl</a><span class="lang">rust</span>
+    <p>Turns Cloudflare WARP into a manual switch on Linux — <code>warpctl on</code>, <code>off</code>,
+      <code>status</code>. Waits for the daemon to be ready before connecting, and masks the service
+      when off so nothing runs in the background.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://github.com/MrLR22/gitcheck" target="_blank" rel="noopener">gitcheck</a><span class="lang">bash</span>
+    <p>Scans a folder full of projects and prints one table: which repos are up to date, which have
+      commits to push or pull, uncommitted changes, or no remote. Read-only — handy before reinstalling an OS.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://github.com/MrLR22/arch-store" target="_blank" rel="noopener">arch-store</a><span class="lang">bash</span>
+    <p>A rofi-friendly package store for Arch: pacman and AUR packages in one fzf picker, with
+      multi-select install and a live info preview.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://github.com/MrLR22/dotfiles" target="_blank" rel="noopener">dotfiles</a><span class="lang">config</span>
+    <p>My Neovim, Alacritty, Fish, tmux, Hyprland and Waybar setup.</p>
+  </div>
+
+  <h2 class="section">earlier builds</h2>
+
+  <div class="latest-item">
+    <a class="title" href="https://github.com/MrLR22/RepRise" target="_blank" rel="noopener">RepRise</a><span class="lang">go</span>
+    <p>A workout-logging backend in Go — users, workouts and per-exercise entries in PostgreSQL,
+      with dev and test databases run through Docker Compose.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://github.com/MrLR22/focys_frontend" target="_blank" rel="noopener">Secure Contact Form</a><span class="lang">mern</span>
+    <p>A contact form system built around security basics: email OTP for MFA, account lockout,
+      role-based access control, AES-256 message encryption, bcrypt and HMAC-SHA256 signatures.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://github.com/MrLR22/Gamifiying_habit_tracker" target="_blank" rel="noopener">Gamifying Habit Tracker</a><span class="lang">next.js</span>
+    <p>Habit tracking with daily quests, streaks, levels and a built-in todo list. Built with
+      M Karthik Reddy.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://github.com/MrLR22/Personalized-Discovery" target="_blank" rel="noopener">Personalized Discovery</a><span class="lang">python</span>
+    <p>A product recommendation system on hand-written data structures — a HashMap for
+      interactions, a Trie for search, a MaxHeap for ranking.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://expenses-tracker-nine-rust.vercel.app/" target="_blank" rel="noopener">Expenses Tracker</a><span class="lang">react + ts</span>
+    <p>Add, edit and delete daily expenses, saved in local storage. Live on Vercel.</p>
+  </div>
+  <div class="latest-item">
+    <a class="title" href="https://react-and-python-friends-web-app.vercel.app/" target="_blank" rel="noopener">Friends Web App</a><span class="lang">react + flask</span>
+    <p>A friends list manager — React frontend talking to a Python backend. Live on Vercel.</p>
+  </div>
+
+  <footer class="site">© 2026 Mr LR — built by hand, no framework.</footer>
 </div>
 
 </body>
